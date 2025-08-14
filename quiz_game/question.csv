@@ -1,6 +1,6 @@
 question,answer
-what is the color of a red apple, red
-what is the distance between earth and moon(mile), 238,900
+what is the color of a red apple(A.red,B.bule,C.purple,D.orange), A
+what is the distance between earth and moon(A.10,000miles,B.200,000miles,C.238,900,D.240,768miles), C
 how long is one min(enter in sec), 60
 how long is one hour(enter in min), 60
 how long is 12 hours(enter in sec), 43200

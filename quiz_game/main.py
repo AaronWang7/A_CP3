@@ -1,12 +1,13 @@
 import csv 
 import random
-question = []
-ran = 0
-def open_question():
-    with open('quiz_game\main.py', 'r') as file:
-        csv_reader = csv.DictReader(file)
-        for i in csv_reader:
-            question.append(csv_reader)  
-        print(question)
+while True:
 
-open_question()
+    def open_question():
+        question = [1]
+        questions = [1]
+        with open('quiz_game\main.py', 'r') as file:
+            csv_reader = csv.DictReader(file)
+            print(csv_reader)
+            #questions.append(random.choice(question))
+
+    open_question()
