@@ -1,8 +1,8 @@
 question,answer
 what is the color of a red apple A"red" B"bule" C"purple" D"orange",A
-what is the distance between earth and moon(A.10000miles B.200000miles C.238900 D 240768miles),C
-how long is one min(), 60
-how long is one hour(enter in min), 60
-how long is 12 hours(enter in sec), 43200
-how long is 24 hours(enter in hours), 24
-how long is 1 mile(enter in mile), 1
+what is the distance between earth and moonA"10000miles" B"200000miles" C"238900" D"240768miles",C
+how long is one min A"30" B"50" C"61" D"60",D
+how long is one hour(enter in min) A"50" B"30" C"60" D"90",C
+how long is 12 hours(enter in sec) A"43200" b"50000" C"90" D"56700",A
+how long is 24 hours(enter in hours) A"30" B"23" C"25" D"24",D
+how long is 1 mile(enter in mile) A"2" B"1" C"4" C"9532",B
