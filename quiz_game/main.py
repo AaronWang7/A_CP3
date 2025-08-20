@@ -6,23 +6,61 @@ import time
 #Lists to hold questions and answers
 question = []
 answer = []
+choice = []
+admin_name = []
+admin_password = []
+user_name = []
+user_password = []
 #Global variables for user score
 user_score = 0
 breaking = False
 best_score = None
 
-
-#Load questions from CSV
-def open_question(file_name):
-    #Read questions and answers from a CSV file
-    global question, answer
-    question = []
-    answer = []
-    with open(file_name, 'r') as file:
+def user_login():
+    global admin_name,admin_password,user_name,user_password
+    user_name = []
+    user_password = []
+    admin_name = []
+    admin_password = []
+    with open("quiz_game/user.csv", 'r') as file:
         csv_reader = csv.DictReader(file)
         for row in csv_reader:
-            question.append(row["question"])
-            answer.append(row["answer"])
+            user_name.append(row["user_name"])
+            user_password.append(row["password"])
+    
+
+    with open("quiz_game/admin.csv", 'r') as file:
+        csv_reader = csv.DictReader(file)
+    for row in csv_reader:
+        admin_name.append(row["user_name"])
+        admin_password.append(row["password"])
+    name_enter = input("Enter in your user name: ")
+    password_enter = input("Enter in your password")
+    if name_enter in user_name and password_enter in user_password:
+        print("User found!")
+        open_question(file_name)
+
+
+
+#Load questions from CSV
+try:
+    def open_question(file_name):
+        #Read questions and answers from a CSV file
+        global question, answer, choice
+        question = []
+        answer = []
+        with open(file_name, 'r') as file:
+            csv_reader = csv.DictReader(file)
+            for row in csv_reader:
+                question.append(row["question"])
+                answer.append(row["answer"])
+
+
+except FileNotFoundError:
+    print("Enter 1 or 2!")
+
+
+
 
 
 #Handle answering a question
@@ -70,11 +108,11 @@ print("Choose a question file:")
 print("1 - General Knowledge")
 print("2 - Science")
 file_choice = input("Enter 1 or 2: ")
-file_name = "quiz_game/question.csv" if file_choice == "1" else "/workspaces/A_CP3/quiz_game/science.csv"
+file_name = "quiz_game/question.csv" if file_choice == "1" else "quiz_game/science.csv"
 print(f"Loaded {len(question)} questions from {file_name}")
 
 
-open_question(file_name)
+user_login()        
 
 
 while not breaking:
