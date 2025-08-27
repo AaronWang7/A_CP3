@@ -1,0 +1,19 @@
+// AW Fahrenheit to Celsius
+#include <iostream>
+using namespace std;
+
+int main(){
+    cout<< "Enter in Fahrenheit:";
+    float user_input = 0;
+    cin >> user_input;
+    float celsius = (user_input - 32) * 5/9;
+    if (user_input > 9999999999);
+        cout << "The number is too big!"<<endl;
+    {
+        /* code */
+    }
+    
+        cout << user_input << " Degrees Fahrenheit is " << celsius<< " Degrees Celsius"<<endl;
+        return 0;
+    
+}
