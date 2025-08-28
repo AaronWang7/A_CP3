@@ -9,7 +9,7 @@ int main(){
     string admin_login[2] = {"kol999","slsj918"};
     cout << "Enter in your user name:";
     cin >> user_name;
-    string user_login.find(user_name);
+    string user_enter = user_login->find(user_name);
 
     return 0;
     
