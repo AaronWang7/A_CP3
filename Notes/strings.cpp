@@ -21,7 +21,9 @@ int main(){
     cout << name << endl;
     string sentence = "The quick brown fox jumps over the lazy dog";
     cout << sentence << endl;
-    cout << sentence.length() << endl;
+    cout << sentence.length
+    
+    () << endl;
     cout << (name > sentence) << endl;
     //.starts_with() . ends_with()
     //.empty()
