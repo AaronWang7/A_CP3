@@ -1,5 +1,4 @@
 #include <iostream>
-#include <cstdlib>
 #include <ctime>
 using namespace std;
 
@@ -15,7 +14,7 @@ void printBoard() {
     cout << "\nCurrent Board:\n";
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
-            cout << (board[i][j] == "" ? "." : board[i][j]) << " ";
+            cout << (board[i][j] == "" ? "*" : board[i][j]) << " ";
         }
         cout << endl;
     }
@@ -49,20 +48,23 @@ int main() {
     srand(time(0));
     cout << "Welcome to Tic Tac Toe!\n";
     cout << "You are X, Computer is O.\n";
-    cout << "Enter row and column (0,1,2) to place your X.\n";
+    cout << "Enter row and column (1,2,3(use space between two numbers)) to place your X.\n";
 
     while (true) {
         printBoard();
-
+        bool emptySpot = true;
         int row, col;
         do {
-            cout << "Enter row (0-2): ";
+            cout << "Enter row (1-3): ";
             cin >> row;
-            cout << "Enter col (0-2): ";
+            cout << "Enter col (1-3): ";
             cin >> col;
-        } while (row < 0 || row > 2 || col < 0 || col > 2 || !isEmpty(row, col));
-
-        board[row][col] = "X"; 
+        } while (board[row - 1][col - 1] == "*");
+        emptySpot = true;
+            if(board[row-1][col-1] == ""){
+                emptySpot = false;
+                board[row - 1][col - 1] = "X"; 
+            }
 
         if (checkWinner("X")) {
             printBoard();
@@ -81,9 +83,13 @@ int main() {
             aiRow = num / 3;
             aiCol = num % 3;
         } while (!isEmpty(aiRow, aiCol));
-        board[aiRow][aiCol] = "O";
-        cout << "Computer placed O at (" << aiRow << "," << aiCol << ")\n";
-
+            if(emptySpot == false){
+                board[aiRow][aiCol] = "O";
+                cout << "Computer placed O at (" << aiRow + 1 << "," << aiCol  << ")\n";
+        }else{
+            cout << "This place is already taken" <<endl;
+        }
+        
         if (checkWinner("O")) {
             printBoard();
             cout << "Computer wins!\n";
