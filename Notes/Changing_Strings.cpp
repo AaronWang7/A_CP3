@@ -41,6 +41,6 @@ auto index = name.find(' '); // find the index of the space character
 /*
 How do I get a substring from within a string?z: Use substr()
 How do I create an escape character in C++:\n,\t,\
-How do I convert a string to another data type?: 
+How do I convert a string to another data type?:  In the code
 What is a raw string and when would I use it?: A rwa string ignores escape characters like \n, \t, etc, so you can write strings that contain backslashes and quotes without needing to escape them
 */
