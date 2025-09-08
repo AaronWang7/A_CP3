@@ -5,6 +5,7 @@ using namespace std;
 
 
 int number[] = {4,2,6,8,14,24,65}; // global variable
+
 void divide(int* list, int size){
     for(int i=0; i < size; i++){
         list[i] = list[i] / 2; // divide each element in the array by 2
@@ -16,6 +17,9 @@ void divide(int* list, int size){
 }
 
 int main() {
+    int capacity = 5;
+    int* sanity = new int[capacity];
+    int entries = 0;
     //Pointer holds address of a variable instead of information
     int num = 4; // num is an integer variable that holds the value 4
     int* pnum = &num; // & gets the address of num, pNum is a pointer to an integer
@@ -44,9 +48,58 @@ int main() {
     cout << "Number: " << num << endl; // prints the address of num
     cout << "location: " << *pnum << endl; // dereference the pointer to get the value at that address, which is 8
     divide(number,size(number)); 
+    cout << (pnum > pday) << endl; // false, because pnum points to num and pday points to day
+    if(pnum != nullptr)
+        cout << *pnum << endl;
+        pnum++;
+
+    cout << *pnum << endl; // prints the value at the next address, which is 0 (undefined behavior)
+
+    
+
+    while(true){
+        cout << "Number : ";
+        cin >> sanity[entries];
+        if(cin.fail()) break;
+        entries++;
+        if (entries == capacity){
+            capacity += 5;
+            int* temp = new int[capacity];
+            for (int i=0; i < entries; i++){
+                temp[i] = number[i];
+            delete[] sanity;
+            sanity = temp;
+            }
+        }
+    }
+
+    for(int i = 0; i < entries; i++){
+        cout << sanity[i] << endl;
+
+    delete[] sanity; // free the memory allocated for sanity
+
+
+    }
 
     //
 
-
+    
     return 0;
 }
+
+
+
+/*
+What is a pointer?:
+Why do we use pointers?
+How do I create a pointer
+What is indirection or de-referencing?
+What are constant pointers? How are the different types used?
+How do you pass a pointer into a function?
+Why would you pass a pointer to a function?
+How do you compare pointers?
+What is dynamic memory allocation?
+What is the Stack?
+What is the Heap?
+What are smart pointers?
+*/
