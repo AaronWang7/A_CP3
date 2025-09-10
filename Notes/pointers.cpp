@@ -6,14 +6,14 @@ using namespace std;
 
 int number[] = {4,2,6,8,14,24,65}; // global variable
 
-void divide(int* list, int size){
-    for(int i=0; i < size; i++){
+void divide(int* list, int size){// function that takes a pointer to an integer array and the size of the array
+    for(int i=0; i < size; i++){// loop through the array
         list[i] = list[i] / 2; // divide each element in the array by 2
         cout << list[i] << " "; // print the modified array
         
         
     }    
-    cout << "Address of numbers in divide function: " << *list << endl;
+    cout << "Address of numbers in divide function: " << *list << endl; // print the address of the first element in the array
 }
 
 int main() {
@@ -56,25 +56,25 @@ int main() {
     cout << *pnum << endl; // prints the value at the next address, which is 0 (undefined behavior)
 
     
-
-    while(true){
-        cout << "Number : ";
-        cin >> sanity[entries];
-        if(cin.fail()) break;
-        entries++;
-        if (entries == capacity){
-            capacity += 5;
-            int* temp = new int[capacity];
-            for (int i=0; i < entries; i++){
-                temp[i] = number[i];
-            delete[] sanity;
-            sanity = temp;
+// DYNAMIC MEMORY ALLOCATION
+    while(true){// infinite loop
+        cout << "Number : ";// prompt the user to enter a number
+        cin >> sanity[entries];// store the user input in the array at the current index
+        if(cin.fail()) break;// if the user input is not a number, break the loop
+        entries++;// increment the index
+        if (entries == capacity){// if the index is equal to the capacity of the array, we need to increase the size of the array
+            capacity += 5;// increase the capacity by 5
+            int* temp = new int[capacity];// create a new array with the new capacity
+            for (int i=0; i < entries; i++){// copy the old array to the new array
+                temp[i] = number[i];// copy the old array to the new array
+            delete[] sanity;// free the memory allocated for the old array
+            sanity = temp;// point sanity to the new array
             }
         }
     }
 
-    for(int i = 0; i < entries; i++){
-        cout << sanity[i] << endl;
+    for(int i = 0; i < entries; i++){   // print the user inputs
+        cout << sanity[i] << endl;// print the user input at the current index
 
     delete[] sanity; // free the memory allocated for sanity
 
@@ -84,7 +84,7 @@ int main() {
     //
 
     
-    return 0;
+    return 0;// return 0 indicates that the program ended successfully
 }
 
 
