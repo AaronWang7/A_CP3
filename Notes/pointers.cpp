@@ -90,16 +90,16 @@ int main() {
 
 
 /*
-What is a pointer?:
-Why do we use pointers?
-How do I create a pointer
-What is indirection or de-referencing?
-What are constant pointers? How are the different types used?
-How do you pass a pointer into a function?
-Why would you pass a pointer to a function?
-How do you compare pointers?
-What is dynamic memory allocation?
-What is the Stack?
-What is the Heap?
-What are smart pointers?
+What is a pointer?: variable that stores a memory address
+Why do we use pointers? Save memory
+How do I create a pointer int *p
+What is indirection or de-referencing? Using *p to get or set the value
+What are constant pointers? How are the different types used? const int *p pointer can change
+How do you pass a pointer into a function? In the code
+Why would you pass a pointer to a function? more efficiently
+How do you compare pointers? ==
+What is dynamic memory allocation? new
+What is the Stack? local vaeiable
+What is the Heap? In code
+What are smart pointers? unique_ptr
 */
