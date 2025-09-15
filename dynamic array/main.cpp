@@ -6,37 +6,29 @@
 
 #include <string>
 
-
 using namespace std;
-
-string user_enter[] = {"Red", "Blue", "Green", "Yellow", "Purple"};
 
 
 int main(){
-    int capacity = 5;
-    int* user_input = new int[capacity];
-
+    int cap = 5;
+    string user_enter[] = {"red", "blue", "green", "yellow", "purple"};
     int entries = 0;
     while(true){
-            cout << "Enter something you could think of(Books, Movies, Shows, Colors, Comics, etc.) :";
-        cin >> user_input[entries];
+        cout << "Enter something you could think of(Books, Movies, Shows, Colors, Comics, etc.) :";
+        cin >> user_enter[entries];
         entries++;
-        cout << "You entered: " << user_enter << endl;
-        if (entries == capacity){
-            capacity += 5;
-            int* temp = new int[capacity];
-            for (int i=0; i < entries; i++){
-                temp[i] = user_input[i];
-            delete[] user_input;
-            user_input = temp;
-        for(int i = 0; i < entries; i++){
-            cout << user_input[i] << endl;
-
+        cout << "You entered: " << user_enter[entries-1] << endl;
+        if (entries == cap){
+            cap = cap + 5;
+            cout << cap << endl;
+            string* temp = new string[cap];
+            for (int i=0; i < entries-1; i++){
+                temp[i] = user_enter[i];
 
             }
+        
         }
-
-    }
+    
 
     return 0;
 
@@ -44,7 +36,6 @@ int main(){
 
 
 }
-
 
 
 
@@ -86,4 +77,5 @@ Remember you have to set your variable types
 You have to get the standard library to create your inputs and outputs 
 Make sure your arrows are pointing the right way for the input/output stream. 
 You have to set the length of the array when you create it
+
 */
