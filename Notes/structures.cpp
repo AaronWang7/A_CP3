@@ -158,11 +158,11 @@ int main() {
 
 
 /*
-What are structures?
-How do you build a structure?
-What can be held in a structure?
-How do you access the information in a structure?
-How do you overload an operator
+What are structures? Like Python class, store things
+How do you build a structure? struct Name{}
+What can be held in a structure? Any data types
+How do you access the information in a structure? In the code
+How do you overload an operator In the code
 */
 
 
