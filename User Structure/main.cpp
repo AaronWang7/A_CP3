@@ -22,8 +22,30 @@ struct users{
 string user_name = "";
 bool isUser = false;
 
+// Overload == operator for person
+bool operator==(const users& first, const users& second) {
+    return (first.user1 == second.user1 &&
+            first.user2 == second.user2 &&
+            first.user3 == second.user3 &&
+            first.user4 == second.user4 &&
+            first.user5 == second.user5 &&
+            first.user6 == second.user6&&
+            first.user7 == second.user7&&
+            first.user8 == second.user8&&
+            first.user9 == second.user9&&
+            first.user10 == second.user10&&
+    );
+}
+
+// Overload << operator for person
+ostream& operator<<(ostream& stream, const users& p) {
+    stream << p.user1 << p.user2 << p.user3 << p.user4 << p.user5 << p.user6 << p.user7 << p.user8<< p.user9 << p.user10;
+    return stream;
+}
+
+
 int main (){
-    vector<users> user_names;
+    vector<users> user_nam;
     cout << "Enter in your user name :";
     cin >> user_name;
     cout << user_name;
@@ -31,33 +53,31 @@ int main (){
 
 
     users user_names = {"Aaron","Tom","name1","name2","name3","name4","name5","name6","name7","name8"};
-    users user_input = user_name;
+    //users user_input = user_name;
 
-
-     for(int i=0; i < 9 ; i++){
-        if (user_name == user_names) {
-            isUser = true;
-            cout << "You are in the list!";
-
-
-    for (const auto& a : user_names) {
+        for (const auto& a : user_nam ) {
         cout << a << endl;
     }
 
+     //for(int i=0; i < 10 ; i++){
+       // if (user_name == user_names[i]) {
+         //   isUser = true;
+         //   cout << "You are in the list!";
+        //}
+    //}
 
-    if (user_name == user_names) {
-        cout << "Equal" << endl;
-    } else {
-        cout << "Not equal" << endl;
-    }
+    //for (const auto& a : user_names) {
+      //  cout << a << endl;
+    //}
+
 
     return 0;
-}
 
 
 
-    }
-}
+
+
+    
 
 
 
@@ -65,7 +85,6 @@ return 0;
 
 
 }
-
 
 
 
