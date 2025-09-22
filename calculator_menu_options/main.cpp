@@ -66,18 +66,17 @@ while (breaking == false){
             breaking = true;
      
      }else{
-        cout << "Not a option!";
+        cout << "Not a option!"<< endl;
     }
     
 
     
     
     
+
+}
     return 0;
 }
-
-}
-
 
 
 
