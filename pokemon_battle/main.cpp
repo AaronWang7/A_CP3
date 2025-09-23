@@ -10,7 +10,8 @@ enum Action{
     Explore = 1, 
     Battle = 2,
     Heal = 3,
-    Exit = 4,
+    Inventory = 4,
+    Exit = 5,
 };
 
 struct wildPokemon {
@@ -31,14 +32,29 @@ struct userPokemon {
 
 };
 
+struct userInventory {
+    int commonBalls;
+    int greatBalls;
+    int ultraBalls;
+    int masterBalls;
+    int smallpotions;
+    int largepotions;
+    int masterpotions;
+};
+
 int main() {
-    cout << "Welcome to the Pokemon Game! To help you start, here is your first Pokemon!" << endl;
-    userPokemon firstPokemon = {"Pikachu", 10.0, 10.0, "Thunder Shock", 5};
-    cout << 
+    cout << "\nWelcome to the Pokemon Game! To help you start, here is your first Pokemon and 10 common balls." << endl;
+    userPokemon firstPokemon = {"Pikachu", 15.0, 15.0, "Thunder Shock", 1};
+    cout << "This is your first Pokemon: " << firstPokemon.name << endl;
+    cout << "This is your first ten common ball(Use it to catch Pokemon, it has a low catch rate): " << endl;
+    cout << "From the Highest catch rate to lowest: Master Ball, Ultra Ball, Great Ball, Common Ball" << endl;
+    userInventory starterPack = {10,0,0,0,5,0,0};
+    cout <<
     "1: Explore" << endl <<
     "2: Battle" << endl <<
     "3: Heal Pokemon" << endl <<
-    "4: Exit" << endl;
+    "4: Check Inventory" << endl <<
+    "5: Exit" << endl;
 
     cout << "Enter your choice (1-4): ";
     int choice;
@@ -48,36 +64,87 @@ int main() {
         int seconds = time(nullptr);
         srand(seconds);
         float my_num = rand() % 101;
-        if (my_num <= 0.10) {
+        cout << my_num << endl;
+        if (my_num <= 1) {
             wildPokemon foundpokemon = {"Groudon", 700.0, 700.0, "Mud Shot", 70, "Ground"};
-       
-        }else if (my_num <= 0.30) {
-            wildPokemon foundpokemon = {"Kyogre", 680.0, 680.0, "Surf", 70, "Water"};
-        
+            cout << "You found a wild " << foundpokemon.name;
+            cout << "Would you like to catch it? (Y/N): ";
+            char catchPokemon;
+            float catchChance;
+            if (starterPack.commonBalls > 0){
+                float catchRate = 1.0;
+
+            }else if (starterPack.greatBalls > 0){
+                float catchRate = 2.0;
+            }else if (starterPack.ultraBalls > 0){
+                Float.catchRate = 5.0;
+            }else if (starterPack.masterBalls > 0){
+                float catchRate = 100.0;
+            }
+                     
+            cin >> catchPokemon;
+            if (catchPokemon == 'y' || "Y"){
+                float catchChance = rand()%101;
+            }
+        }else if (my_num <= 2) {
+            wildPokemon foundpokemon = {"Kyogre", 680.0, 680.0, "Surf", 70 , "Water"};
+            cout << "You found a wild " << foundpokemon.name;
         }else if (my_num <= 5) {
             wildPokemon foundpokemon = {"Charizard", 370, 370.0, "Fire ball", 55, "Fire"};
+            cout << "You found a wild " << foundpokemon.name;
         }else if (my_num <= 15) {
             wildPokemon foundpokemon = {"Blastoise", 500.0, 500.0, "Water Gun", 55, "Water"};
+            cout << "You found a wild " << foundpokemon.name;
         }else if (my_num <= 20) {
             wildPokemon foundpokemon = {"Growilthe", 270, 270.0, "Fire ball", 45, "Fire"};
+            cout << "You found a wild " << foundpokemon.name;
         }else if (my_num <= 25) {
-            wildPokemon foundpokemon = {"", 230.00, 230.0, "Dragon Claw", 40, "Dragon"};
-        
+            wildPokemon foundpokemon = {"Dragonite", 230.00, 230.0, "Dragon Claw", 40, "Dragon"};
+            cout << "You found a wild " << foundpokemon.name;
+        }else if (my_num <= 30) {
+            wildPokemon foundpokemon = {"Fighting Wolf", 200.00, 200.0, "Kick", 35, "Common"};
+            cout << "You found a wild " << foundpokemon.name;
+        }else if (my_num <= 35) {
+            wildPokemon foundpokemon = {"Fighting bird", 170.00, 170.0, "Feather attack", 30, "Flying"};
+            cout << "You found a wild " << foundpokemon.name;
+        }else if (my_num <= 40) {
+            wildPokemon foundpokemon = {"Yeti", 270.00, 270.0, "Ice Age", 30, "Ice"};
+             cout << "You found a wild " << foundpokemon.name;
+        }else if (my_num <= 50) {
+            wildPokemon foundpokemon = {"Eevee", 70.00, 70.0, "Kick", 15, "Normal"};
+            cout << "You found a wild " << foundpokemon.name;
+        }else if (my_num <= 50) {
+            wildPokemon foundpokemon = {"Flying boat", 45.00, 45.0, "Boat attack", 5, "flying"};
+            cout << "You found a wild " << foundpokemon.name;
+        }else if (my_num <= 55) {
+            wildPokemon foundpokemon = {"Pikachu", 15.00, 15.0, "Thunder Shock", 1, "Electric"};
+            cout << "You found a wild " << foundpokemon.name;
+        }else {
+            wildPokemon foundpokemon = {"Caterpie", 10.00, 10.0, "Tackle", 1, "Bug"};
+             cout << "You found a wild " << foundpokemon.name;
+
+        }
+
+
+        // list of all pokemon to find names: "Pikachu", "Bulbasaur", "Charmander", "Squirtle", "Eevee", "Jigglypuff", "Meowth", "Psyduck", "Snorlax", "Magikarp"
+
+
+            
             
 
-        };
+    
        
     }else if (choice == Action::Exit){
             cout << "Goodbye!" << endl;
      
      }else{
         cout << "Not a option!"<< endl;
-    }
+    };
 
 
 
     return 0;
-}  
+}
 
 
 
