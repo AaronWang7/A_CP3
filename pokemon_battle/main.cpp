@@ -49,6 +49,7 @@ int main() {
     cout << "This is your first ten common ball(Use it to catch Pokemon, it has a low catch rate): " << endl;
     cout << "From the Highest catch rate to lowest: Master Ball, Ultra Ball, Great Ball, Common Ball" << endl;
     userInventory starterPack = {10,0,0,0,5,0,0};
+    while (true){
     cout <<
     "1: Explore" << endl <<
     "2: Battle" << endl <<
@@ -61,31 +62,54 @@ int main() {
     cin >> choice;
     
     if (choice == Action::Explore){
-        int seconds = time(nullptr);
-        srand(seconds);
         float my_num = rand() % 101;
         cout << my_num << endl;
-        if (my_num <= 1) {
+        if (my_num <= 100) {
             wildPokemon foundpokemon = {"Groudon", 700.0, 700.0, "Mud Shot", 70, "Ground"};
             cout << "You found a wild " << foundpokemon.name;
             cout << "Would you like to catch it? (Y/N): ";
             char catchPokemon;
-            float catchChance;
-            if (starterPack.commonBalls > 0){
-                float catchRate = 1.0;
-
-            }else if (starterPack.greatBalls > 0){
-                float catchRate = 2.0;
-            }else if (starterPack.ultraBalls > 0){
-                Float.catchRate = 5.0;
-            }else if (starterPack.masterBalls > 0){
-                float catchRate = 100.0;
-            }
-                     
+            float catchNumber =  rand() % 101;
+            float catchChance = catchNumber;
             cin >> catchPokemon;
+            
+            int catchRate = 1;
+            int normalBall = 1;
+            int greatBall = 2;
+            int ultraBall = 5;
+            int masterBall = 100;
+
+            
             if (catchPokemon == 'y' || "Y"){
-                float catchChance = rand()%101;
-            }
+                if (starterPack.commonBalls > 0){
+                    catchRate = normalBall;
+                    cout << "You used a common ball." << endl;
+                }else if (starterPack.greatBalls > 0){
+                    catchRate = greatBall;
+                }else if (starterPack.ultraBalls > 0){
+                    catchRate = ultraBall;
+                }else if (starterPack.masterBalls > 0){
+                    catchRate = masterBall;
+                }
+                //why is the catch rate not working?: 
+
+                
+                cout << "This is your catch number" << catchNumber << endl;
+                float catchChance = catchNumber;
+
+                }
+                if (catchChance - foundpokemon.level >= 30.0){
+                    cout << "You caught" << foundpokemon.name << "!" <<endl;
+                    cout << catchChance << endl;
+                    cout << catchRate << endl;
+                    cout << foundpokemon.level << endl;
+                    userPokemon currentPokemon = {foundpokemon.name, foundpokemon.maxHP, foundpokemon.currentHP, foundpokemon.attacks, foundpokemon.level};
+                }else{
+                    cout << foundpokemon.name << "Escaped!\n";
+                    cout << catchChance << endl;
+                    cout << catchRate << endl;
+                    cout << foundpokemon.level << endl;
+                }
         }else if (my_num <= 2) {
             wildPokemon foundpokemon = {"Kyogre", 680.0, 680.0, "Surf", 70 , "Water"};
             cout << "You found a wild " << foundpokemon.name;
@@ -142,7 +166,7 @@ int main() {
     };
 
 
-
+    }
     return 0;
 }
 
