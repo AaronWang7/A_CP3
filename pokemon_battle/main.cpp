@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <ctime>
+#include <limits>
 
 
 using namespace std;
@@ -48,7 +49,7 @@ int main() {
     cout << "This is your first Pokemon: " << firstPokemon.name << endl;
     cout << "This is your first ten common ball(Use it to catch Pokemon, it has a low catch rate): " << endl;
     cout << "From the Highest catch rate to lowest: Master Ball, Ultra Ball, Great Ball, Common Ball" << endl;
-    userInventory starterPack = {10,0,0,0,5,0,0};
+    userInventory starterPack = {10,20,0,0,5,0,0};
     while (true){
     cout <<
     "1: Explore" << endl <<
@@ -57,10 +58,9 @@ int main() {
     "4: Check Inventory" << endl <<
     "5: Exit" << endl;
 
-    cout << "Enter your choice (1-4): ";
-    int choice;
-    cin >> choice;
-    
+    cout << "Enter your choice (1-5): ";
+    int choice; 
+    cin >> choice; 
     if (choice == Action::Explore){
         float my_num = rand() % 101;
         cout << my_num << endl;
@@ -81,21 +81,26 @@ int main() {
 
             
             if (catchPokemon == 'y' || "Y"){
-                if (starterPack.commonBalls > 0){
-                    catchRate = normalBall;
-                    cout << "You used a common ball." << endl;
+                if (starterPack.masterBalls > 0){
+                    catchRate = masterBall;
+                    cout << "You used a master ball." << endl;
+                    starterPack.commonBalls -=1;
                 }else if (starterPack.greatBalls > 0){
                     catchRate = greatBall;
+                    starterPack.greatBalls -=1;
                 }else if (starterPack.ultraBalls > 0){
                     catchRate = ultraBall;
+                    starterPack.ultraBalls -=1;
                 }else if (starterPack.masterBalls > 0){
                     catchRate = masterBall;
-                }
-                //why is the catch rate not working?: 
+                    starterPack.masterBalls -=1;
 
+                }else{
+                    cout << "You have no catching balls left! Go battle other pokemon to earn more!" << endl;
+                }
                 
                 cout << "This is your catch number" << catchNumber << endl;
-                float catchChance = catchNumber;
+                float catchChance = (catchNumber * catchRate);
 
                 }
                 if (catchChance - foundpokemon.level >= 30.0){
@@ -133,7 +138,7 @@ int main() {
             cout << "You found a wild " << foundpokemon.name;
         }else if (my_num <= 40) {
             wildPokemon foundpokemon = {"Yeti", 270.00, 270.0, "Ice Age", 30, "Ice"};
-             cout << "You found a wild " << foundpokemon.name;
+            cout << "You found a wild " << foundpokemon.name;
         }else if (my_num <= 50) {
             wildPokemon foundpokemon = {"Eevee", 70.00, 70.0, "Kick", 15, "Normal"};
             cout << "You found a wild " << foundpokemon.name;
@@ -145,9 +150,21 @@ int main() {
             cout << "You found a wild " << foundpokemon.name;
         }else {
             wildPokemon foundpokemon = {"Caterpie", 10.00, 10.0, "Tackle", 1, "Bug"};
-             cout << "You found a wild " << foundpokemon.name;
+            cout << "You found a wild " << foundpokemon.name;
 
         }
+    }else if (choice == Action:: Inventory){
+            cout << "This is your inventory: " << endl;
+            cout << "Common balls:" << starterPack.commonBalls << endl;
+            cout << "Great balls:" << starterPack.greatBalls << endl;
+            cout << "Ultra balls:" << starterPack.ultraBalls << endl;
+            cout << "Master balls:" << starterPack.masterBalls << endl;
+            cout << "Small potions:" << starterPack.smallpotions << endl;
+            cout << "Large potions:" << starterPack.largepotions << endl;
+            cout << "Master potions:" << starterPack.masterpotions << endl;
+
+
+
 
 
         // list of all pokemon to find names: "Pikachu", "Bulbasaur", "Charmander", "Squirtle", "Eevee", "Jigglypuff", "Meowth", "Psyduck", "Snorlax", "Magikarp"
@@ -157,20 +174,26 @@ int main() {
             
 
     
-       
+    
     }else if (choice == Action::Exit){
             cout << "Goodbye!" << endl;
-     
-     }else{
+            break;
+    
+    }else{
         cout << "Not a option!"<< endl;
+        // why it keeps printing not a option? : because the enum is not being used correctly, it should be Action::Explore, Action::Battle, Action::Heal, Action::Exit to fix it I need to change the if statements to use the enum values correctly. example: if (choice == Action::Explore) are all of them done right?
+
     };
 
-
+    
+   
     }
     return 0;
+
+
+
+
 }
-
-
 
 
 
