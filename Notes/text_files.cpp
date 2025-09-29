@@ -1,0 +1,164 @@
+//Aw Text files
+/*
+#include <iostream>
+#include <limits>
+#include <fstream>
+#include <iomanip>
+
+using namespace std;
+
+
+int getNumber(const string& promt){
+     int num;
+
+    /*
+    terminal - cout, cin (User given)
+    file - txt, csv, binary
+    network - internet, other computers
+    */
+   /*
+   while(true){
+        cout << promt;
+        cin >> num;
+        cout << "tell me a number\n";
+        cin >> num;
+        if(cin.fail()){
+        cout << "Enter a vailid number!\n";
+
+        }else break;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(),'\n');
+        return num;
+*/
+/*    }
+
+}
+
+int main(){
+   
+
+    int first = getNumber("Enter in your first number:\n");
+    int second = getNumber("Enter in your second number:\n");
+    cout << "You entered" << first << " and " << second << endl;
+
+    /*
+    ifstream - input file stream
+    ofstream - output file stream
+    fstream - file stream (input and output)
+    
+
+    ofstream file;
+    file.open("data.txt");
+    if(file.is_open()){
+    file << setw(20) << "Hello" << setw(20) << "World\n";
+    file.close();
+   
+    }
+    file.open("data.csv");
+    if(file.is_open()){
+    file << "id, title, year\n";
+    << "1, The Matrix, 1999\n";
+    << "2, Inception, 2010\n";
+    file.close();
+
+
+    return 0;
+    }
+}
+*/
+
+
+//Aw Text files
+#include <iostream>
+#include <limits>
+#include <fstream>
+#include <iomanip>
+
+using namespace std;
+
+int getNumber(const string& prompt) {
+    int num;
+    while (true) {
+        cout << prompt;
+        cin >> num;
+        if (cin.fail()) {
+            cout << "Enter a valid number!\n";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        } else {
+            break;
+        }
+    }
+    return num;
+}
+
+int main() {
+    int first = getNumber("Enter your first number:\n");
+    int second = getNumber("Enter your second number:\n");
+    cout << "You entered " << first << " and " << second << endl;
+
+    // Write to a text file
+    ofstream file;
+    file.open("data.txt");
+    if (file.is_open()) {
+        file << setw(20) << "Hello" << setw(20) << "World\n";
+        file.close();
+    }
+
+    // Write to a CSV file
+    file.open("data.csv");
+    if (file.is_open()) {
+        file << "id,title,year\n";
+        file << "1,The Matrix,1999\n";
+        file << "2,Inception,2010\n";
+        file.close();
+    }
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*What are the 3 main sources of data for a program
+What are streams? 
+What are the different streams we might need to include in a program? 
+What is the base class for all streams?
+What is buffer? tempeery, allow to work even input was wrong
+How do you clear the buffer?
+How do you handle invalid inputs from the terminal
+What streams are for files specifically
+How do you write to a text file?
+What do stream manipulators let us do?
+How do you write to a CSV?
+How do you read a text file?
+How do you read a CSV file?
+What is a delimiter?
+How do you read an entire CSV?
+How do you turn items from a CSV into objects of a structure?*/
