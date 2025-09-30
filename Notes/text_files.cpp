@@ -67,8 +67,41 @@ int main(){
 }
 */
 
+struct Movie{
+    int id;
+    string title;
+    int year;
+};
 
 //Aw Text files
+//if (str.empty()) continue;
+//string str;
+//Movie movie;
+//vector<string> movies;
+//while(getline(ifile,str));{
+//movie.pushback(str)
+//}
+//while(!iflie.eof()){
+// if stream file;
+//file.open("data.txt");
+//if (file.is_open()){
+//string linfo;
+//fie >> info;
+//cout << info;
+//file.close();
+//getline(file,str);
+//cout << info;
+//file.close();
+/*
+string str;
+getline(file,str,',');
+Movie movie;
+movie.id = stoi(str);
+getline(file,str,',');
+movie.title = str;
+getline(file,str);
+movie.year = stoi(str);
+*/
 #include <iostream>
 #include <limits>
 #include <fstream>
@@ -123,8 +156,37 @@ int main() {
 
 
 
+/*ifstream ifile;
 
+iflile.open("data.csv");
+if (ifile.is_open()){
+string str;
+vector<Movie> movies;
+while(!ifile.eof()){
+    
+    getline(ifile,str, ',');
+    if(str.empty()) continue;
+    Movie movie;
+    movie.id = stoi(str);
 
+    getline(ifile,str, ',');
+    Movie movie;
+    movie.title = stoi(str);
+
+    getline(ifile,str, ',');
+    Movie movie;
+    movie.year = stoi(str);
+
+    movies.push_back(movie);
+
+    
+    }
+    ifile.close();
+
+    for(movie i: movies){
+        cout << i.id << " " << i.title << " " << i.year << endl;
+    }
+}
 
 
 
