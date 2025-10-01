@@ -67,11 +67,7 @@ int main(){
 }
 */
 
-struct Movie{
-    int id;
-    string title;
-    int year;
-};
+
 
 //Aw Text files
 //if (str.empty()) continue;
@@ -102,12 +98,25 @@ movie.title = str;
 getline(file,str);
 movie.year = stoi(str);
 */
+
+
+
 #include <iostream>
 #include <limits>
 #include <fstream>
 #include <iomanip>
+#include <string>
 
 using namespace std;
+
+
+struct Movie{
+    int id;
+    string title;
+    int year;
+};
+
+
 
 int getNumber(const string& prompt) {
     int num;
@@ -141,7 +150,7 @@ int main() {
     // Write to a CSV file
     file.open("data.csv");
     if (file.is_open()) {
-        file << "id,title,year\n";
+        file << "hi\n";
         file << "1,The Matrix,1999\n";
         file << "2,Inception,2010\n";
         file.close();
@@ -155,29 +164,36 @@ int main() {
 
 
 
-
-/*ifstream ifile;
+/*
+ifstream ifile;
 
 iflile.open("data.csv");
 if (ifile.is_open()){
-string str;
+string line;
 vector<Movie> movies;
-while(!ifile.eof()){
+getline(ifile,line); //skip header line
+while(getline(ifile,line)){
     
-    getline(ifile,str, ',');
-    if(str.empty()) continue;
-    Movie movie;
-    movie.id = stoi(str);
+    getline(ifile,str, ',')
+    instringstream iss(line);
+    if(iss.empty()) continue;
+    string item;
 
-    getline(ifile,str, ',');
     Movie movie;
-    movie.title = stoi(str);
-
-    getline(ifile,str, ',');
-    Movie movie;
-    movie.year = stoi(str);
-
+    getline(iss,item, ',');
+    movie.id = stoi(item);
+    cout << item << endl;
+    getline(iss,item, ',');
+    movie.year = stoi(year);
+    cout << item << endl;
+    getline(iss,item, ',');
+    movie.title = item;
+    cout << item << endl;
     movies.push_back(movie);
+
+
+
+
 
     
     }
@@ -190,9 +206,7 @@ while(!ifile.eof()){
 
 
 
-
-
-
+*/
 
 
 
