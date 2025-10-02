@@ -53,7 +53,7 @@ void writeToFile() {
     ofstream file;
     file.open(filename);
     if (!file.is_open()) {
-        cout << "Error saving to file!\n";
+        cout << "Error! Failed to save in file\n";
         return;
     }
     
