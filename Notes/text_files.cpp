@@ -222,19 +222,21 @@ while(getline(ifile,line)){
 
 
 
-/*What are the 3 main sources of data for a program
-What are streams? 
-What are the different streams we might need to include in a program? 
-What is the base class for all streams?
-What is buffer? tempeery, allow to work even input was wrong
-How do you clear the buffer?
-How do you handle invalid inputs from the terminal
-What streams are for files specifically
-How do you write to a text file?
-What do stream manipulators let us do?
-How do you write to a CSV?
-How do you read a text file?
-How do you read a CSV file?
-What is a delimiter?
-How do you read an entire CSV?
-How do you turn items from a CSV into objects of a structure?*/
+/*What are the 3 main sources of data for a program 
+What are streams? Data between program
+What are the different streams we might need to include in a program? cin cout
+What is the base class for all streams? ios
+What is buffer? tempeery, allow to work even input was wrong 
+How do you clear the buffer? cin.clear()
+How do you handle invalid inputs from the terminal cin.clear() and in the code
+What streams are for files specifically  ifstream ofstream fstream
+How do you write to a text file? In the code
+What do stream manipulators let us do? control format
+How do you write to a CSV? In the code
+How do you read a text file? getline(ifstream, string) in the code
+How do you read a CSV file? getline(ifstream, string) in the code
+What is a delimiter? ','
+How do you read an entire CSV?loop through lines
+How do you turn items from a CSV into objects of a structure? In the code
+
+*/
