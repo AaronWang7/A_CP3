@@ -15,7 +15,7 @@ struct HighScore {
 };
 
 vector<HighScore> scores;
-string filename = "highscores.csv";
+string filename = "highscore.csv";
 
 void readFromFile() {
     ifstream file;
@@ -87,7 +87,7 @@ void addScore() {
     cout << "Enter score: ";
     cin >> newScore.score;
     
-    cout << "Enter date (MM/DD/YYYY): ";
+    cout << "Enter date (MM/DD/YYYY) Make sure to include '/' in between: ";
     cin >> newScore.date;
     
     scores.push_back(newScore);
