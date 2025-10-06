@@ -23,6 +23,7 @@ Movie parseMovie(string str){
    stream.str(str); // parsing, ready to split
    getline(stream, movie.title, ',');
    stream >> movie.year;
+   
    return movie;
 }
 
