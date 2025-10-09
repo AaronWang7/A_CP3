@@ -33,8 +33,8 @@ void loadMovies(vector<Movie>& movies, const string& filename) {
         Movie m;
         string yearStr;
         getline(ss, m.title, ',');
-        getline(ss, yearStr, ',');
         getline(ss, m.director, ',');
+        getline(ss, yearStr, ',');
         getline(ss, m.genre, ',');
         getline(ss, m.rating, ',');
         m.year = stoi(yearStr);
@@ -46,7 +46,7 @@ void loadMovies(vector<Movie>& movies, const string& filename) {
 void saveMovies(const vector<Movie>& movies, const string& filename) {
     ofstream file(filename);
     for (auto& m : movies) {
-        file << m.title << "," << m.year << "," << m.director << "," << m.genre << "," << m.rating << "\n";
+        file << m.title << "," << m.director << "," << m.year << "," << m.genre << "," << m.rating << "\n";
     }
     file.close();
 }
@@ -57,10 +57,11 @@ void viewMovies(const vector<Movie>& movies) {
         return;
     }
     for (size_t i = 0; i < movies.size(); ++i) {
-        cout << i + 1 << ". " << movies[i].title << " (" << movies[i].year << ")\n"
-             << "   Director: " << movies[i].director << "\n"
-             << "   Genre: " << movies[i].genre << "\n"
-             << "   Rating: " << movies[i].rating << "\n";
+        cout << "Movies: \n" << endl;
+        cout << i + 1 << ". \n" <<  movies[i].title << " (" << movies[i].year << ")\n"
+             << "   Director: " <<  movies[i].director << "\n"
+             << "   Genre: " <<     movies[i].genre << "\n"
+             << "   Rating: " <<    movies[i].rating << "\n";
     }
 }
 
@@ -69,15 +70,20 @@ void addMovie(vector<Movie>& movies) {
     cout << "Enter title: ";
     cin.ignore();
     getline(cin, m.title);
+    //
+    cout << "Enter director: ";
+    getline(cin, m.director);
+    //
     cout << "Enter year: ";
     cin >> m.year;
     cin.ignore();
-    cout << "Enter director: ";
-    getline(cin, m.director);
+    //
     cout << "Enter genre: ";
     getline(cin, m.genre);
+    //
     cout << "Enter rating: ";
     getline(cin, m.rating);
+    //
     movies.push_back(m);
     cout << "Movie added.\n";
 }
