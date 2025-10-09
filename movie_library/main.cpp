@@ -1,153 +1,165 @@
 // Aw Movie Library
-
 #include <iostream>
 #include <fstream>
-#include <iomanip>
 #include <sstream>
 #include <vector>
-
+#include <string>
 using namespace std;
 
-
-enum Action{
-    View = 1, 
-    Add = 2,
-    Delete = 3,
-    search = 4,
-    Exit = 5
+enum Action {
+    View = 1,
+    Add,
+    Delete,
+    Search,
+    Exit
 };
 
-struct  Movie{
-      string rating;
-      string director;
-      string genre;
-      string title; 
-      int year;
+struct Movie {
+    string title;
+    int year;
+    string director;
+    string genre;
+    string rating;
 };
 
-
-Movie parseMovie(string str){
-   Movie movie;
-   stringstream stream; // parsing
-   stream.str(str); // parsing, ready to split
-   getline(stream, movie.title, ',');
-   stream >> movie.year;
-   
-   return movie;
-}
-
-
-string to_string(double number, int precision = 2){
-
-   stringstream stream;
-   stream << fixed << setprecision(precision) << number; // control the conversion
-   return stream.str();
-
-}
-
-int main(){
-    Movie movie;
-    cout << "Enter your choice: " << endl;
-    cout << "1: View Movies" << endl << "2: Add Movie" << endl << "3: Delete Movie" << endl << "4: Search Movies" << endl << "5: Exit" << endl;
-    int user_choice;
-    cin >> user_choice;
-    if (user_choice == Action::View){
-        ifstream ifile;
-        ifstream ifile;
-        istringstream iss(line);
-        string item;
-
-        iflile.open("movies.csv");
-        if (ifile.is_open()){
-        string line;
-        vector<Movie> movies;
-        getline(ifile,line); //skip header line
-        while(getline(ifile,line)){
-        
-        getline(ifile, ',')
-        if(iss.empty()) continue;
-        string item;
-    
-        Movie movie;
-        getline(iss,item, ',');
-        movie.rating = stoi(Rating);
-        cout << item << endl;
-        getline(iss,item, ',');
-        movie.year = stoi(year);
-        cout << item << endl;
-        getline(iss,item, ',');
-        movie.director = stoi(Director);
-        cout << item << endl;
-        getline(iss,item,',');
-        movie.genre = stoi(Genre);
-        getline(iss,item,',');
-        movie.title = stoi(Name);
-        movies.push_back(movie);
-        
-
-
-
-
-    
+void loadMovies(vector<Movie>& movies, const string& filename) {
+    movies.clear();
+    ifstream file(filename);
+    if (!file.is_open()) return;
+    string line;
+    while (getline(file, line)) {
+        if (line.empty()) continue;
+        stringstream ss(line);
+        Movie m;
+        string yearStr;
+        getline(ss, m.title, ',');
+        getline(ss, yearStr, ',');
+        getline(ss, m.director, ',');
+        getline(ss, m.genre, ',');
+        getline(ss, m.rating, ',');
+        m.year = stoi(yearStr);
+        movies.push_back(m);
     }
-    ifile.close();
+    file.close();
+}
 
-    for(movie i: movies){
-        cout << i.genre << " " << i.title << " " << i.year << endl;
+void saveMovies(const vector<Movie>& movies, const string& filename) {
+    ofstream file(filename);
+    for (auto& m : movies) {
+        file << m.title << "," << m.year << "," << m.director << "," << m.genre << "," << m.rating << "\n";
+    }
+    file.close();
+}
+
+void viewMovies(const vector<Movie>& movies) {
+    if (movies.empty()) {
+        cout << "No movies in library.\n";
+        return;
+    }
+    for (size_t i = 0; i < movies.size(); ++i) {
+        cout << i + 1 << ". " << movies[i].title << " (" << movies[i].year << ")\n"
+             << "   Director: " << movies[i].director << "\n"
+             << "   Genre: " << movies[i].genre << "\n"
+             << "   Rating: " << movies[i].rating << "\n";
     }
 }
 
-        
-    }
-
-   auto movie = parseMovie("Terminator, 1984");
-   cout << movie.title << " " << movie.year << endl;
-   fstream file;
-   file.open("movies.csv", ios::in | ios :: out | ios::app);
-   if (file.is_open()){
-
-      
-
-      file.close();
-
-   }
-   
-   
-   
-   return 0;
-
-
-
-
-
-return 0;
-
+void addMovie(vector<Movie>& movies) {
+    Movie m;
+    cout << "Enter title: ";
+    cin.ignore();
+    getline(cin, m.title);
+    cout << "Enter year: ";
+    cin >> m.year;
+    cin.ignore();
+    cout << "Enter director: ";
+    getline(cin, m.director);
+    cout << "Enter genre: ";
+    getline(cin, m.genre);
+    cout << "Enter rating: ";
+    getline(cin, m.rating);
+    movies.push_back(m);
+    cout << "Movie added.\n";
 }
 
+void deleteMovie(vector<Movie>& movies) {
+    if (movies.empty()) {
+        cout << "No movies to delete.\n";
+        return;
+    }
+    viewMovies(movies);
+    cout << "Enter movie number to delete: ";
+    int index;
+    cin >> index;
+    if (index < 1 || index > (int)movies.size()) {
+        cout << "Invalid number.\n";
+        return;
+    }
+    cout << "Delete " << movies[index - 1].title << "? (y/n): ";
+    char confirm;
+    cin >> confirm;
+    if (confirm == 'y' || confirm == 'Y') {
+        movies.erase(movies.begin() + index - 1);
+        cout << "Movie deleted.\n";
+    } else {
+        cout << "Cancelled.\n";
+    }
+}
 
+void searchMovies(const vector<Movie>& movies) {
+    if (movies.empty()) {
+        cout << "No movies to search.\n";
+        return;
+    }
+    cout << "Search by:\n1. Title\n2. Director\n3. Genre\n4. Rating\n5. Year\nChoice: ";
+    int option;
+    cin >> option;
+    cin.ignore();
+    string keyword;
+    int yearKey = 0;
+    if (option == 5) {
+        cout << "Enter year: ";
+        cin >> yearKey;
+    } else {
+        cout << "Enter keyword: ";
+        getline(cin, keyword);
+    }
+    bool found = false;
+    for (auto& m : movies) {
+        bool match = false;
+        switch (option) {
+            case 1: match = (m.title == keyword); break;
+            case 2: match = (m.director == keyword); break;
+            case 3: match = (m.genre == keyword); break;
+            case 4: match = (m.rating == keyword); break;
+            case 5: match = (m.year == yearKey); break;
+            default: cout << "Invalid.\n"; return;
+        }
+        if (match) {
+            cout << m.title << " (" << m.year << "), " << m.director << ", "
+                 << m.genre << ", " << m.rating << "\n";
+            found = true;
+        }
+    }
+    if (!found) cout << "No matches found.\n";
+}
 
-
-
-/*INSTRUCTIONS:
-Create an application that manages your Movie Library using structures to store movie details and enumerations for menu options. 
-Your program should persist movie data by reading from and writing to an external file in CSV format.
-
-Main menu needs to allow our user to load the library from a file (I will use a different one than the example one I have given you), view all movies, add a movie, delete a movie, and search movies.
-
-The search menu should allow the user to select what they would like to search by, then the specific value they would like to search. 
-
-NOTE: You need to build a sequential search algorithm for this project (it is a state standard) 
-
-NOTE: Practice Movie ListDownload Practice Movie List
-
-EXAMPLE:
-Rating (e.g., G, PG, PG-13, R)
-Director (e.g., Christopher Nolan)
-Release Year (e.g., 1987)
-Genre (e.g., Action, Comedy)
-KEY REMINDERS:
-Use structures to organize movie data.
-Use enumerations for the menu.
-Incorporate input validation and error handling.
-Make sure the program is user-friendly and clear.
-*/
+int main() {
+    vector<Movie> movies;
+    string filename = "movies.csv";
+    loadMovies(movies, filename);
+    int user_choice = 0;
+    do {
+        cout << "\n1: View Movies\n2: Add Movie\n3: Delete Movie\n4: Search Movies\n5: Exit\nChoice: ";
+        cin >> user_choice;
+        switch (user_choice) {
+            case View: viewMovies(movies); break;
+            case Add: addMovie(movies); break;
+            case Delete: deleteMovie(movies); break;
+            case Search: searchMovies(movies); break;
+            case Exit: saveMovies(movies, filename); cout << "Saved. Goodbye!\n"; break;
+            default: cout << "Invalid choice.\n";
+        }
+    } while (user_choice != Exit);
+    return 0;
+}
