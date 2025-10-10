@@ -166,6 +166,7 @@ int main() {
             case Exit: saveMovies(movies, filename); cout << "Saved. Goodbye!\n"; break;
             default: cout << "Invalid choice.\n";
         }
+    // Keep running until the user chooses to exit.
     } while (user_choice != Exit);
     return 0;
 }
