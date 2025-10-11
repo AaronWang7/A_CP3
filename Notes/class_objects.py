@@ -80,18 +80,18 @@ print(tia)
 
 """
 What is a class? zoomed out version of the thing that the class repsent
-What is an object? 
-How is a class a form of encapsulation? 
-How is a class an abstraction of an object?
-How do you access information in an object?
-How do you initialize a class?
-How do you set a default value 
-How do you use type hinting?
-How do you set an attribute to be private?
-How do you make a class method?
-Why do we include docstrings/
-What does "self" do as a parameter for class methods?
-What are getter and setter methods?
-What are magic methods?
-Where are class objects saved? (heap or stack?)
+What is an object? An instance of a class
+How is a class a form of encapsulation?  bundles data (attributes) and functions (methods) together
+How is a class an abstraction of an object? It represents only the essential features
+How do you access information in an object? IN THE CODE
+How do you initialize a class? __init__()
+How do you set a default value  in the code
+How do you use type hinting? In the code
+How do you set an attribute to be private? In the code
+How do you make a class method? In the code
+Why do we include docstrings to explain what the class or method does
+What does "self" do as a parameter for class methods? the object itself
+What are getter and setter methods? In the code
+What are magic methods? __init__, in the code
+Where are class objects saved? (heap or stack?) heap
 """
