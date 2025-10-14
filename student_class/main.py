@@ -2,27 +2,37 @@ class Student:
     """Student class with ID, first and last names, as well as grade. 
     Method to get full name, increase grade by 9"""
     first_name: str
-    last_namez: str
+    last_name: str 
     id: str
     grade: int
-    def __init__(self, first_name = "John", last_name = "Doe", id =  "000", grade = 100):
-        """Sets all vaules"""
+
+    def __init__(self, first_name="John", last_name="Doe", id="000", grade=100):
+        """Sets all values"""
         self.first_name = first_name
         self.last_name = last_name
         self.id = id
         self.grade = grade
-
-    def setGrade(self) -> str: # setter method
-        """Increase grdae by 9"""
+        
+    def setGrade(self) -> None:  
+        """Increase grade by 9"""
         self.grade += 9
+
+    def set_grade(self, new_grade: int) -> None:
+        """Set grade to a specific value"""
+        self.grade = new_grade
+
     
-    def full(self): # getter method
+    def get_grade(self) -> int:
+        """Return the student's grade"""
+        return self.grade
+
+    def full(self) -> str:  
         """Create full name"""
         return self.first_name + " " + self.last_name
-        
-    
-    def __str__(self):
+
+    def __str__(self) -> str:
         return f"Name: {self.first_name}\nLast Name: {self.last_name}\nID: {self.id}\nGrade: {self.grade}"
+
 
 # Apply student info    
 tia = Student("Tia","Ha Ha","001", 0)
@@ -43,10 +53,8 @@ print(max,"\n")
 print(tom,"\n")
 print(tim,"\n")
 
-#Prints out updated info
+# Prints out updated info
 print("Upgraded grades")
-print(f"{tia.full()} Grdae: {tia.grade}")
-print(f"{max.full()} Grdae: {max.grade}")
-print(f"{tom.full()} Grdae: {tom.grade}")
-
-
+print(f"{tia.full()} Grade: {tia.get_grade()}")
+print(f"{max.full()} Grade: {max.get_grade()}")
+print(f"{tom.full()} Grade: {tom.get_grade()}")
