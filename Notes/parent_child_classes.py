@@ -54,9 +54,9 @@ print(bobby == birdy)
 #use test_filename.py
 
 """
-What is a parent/abstract class?
-How do you create a child class?
-How does a child class inherit from the parent class?
+What is a parent/abstract class? The main Class that which have many child classes(if created)
+How do you create a child class? In the code
+How does a child class inherit from the parent class? It can access informations from the parent class
 What are class diagrams? Charts that shows the relation ships
 How are class diagrams used to show a parent/child relationship? Because theyare connected to each other
 How do you overload operators in a class? In the code
