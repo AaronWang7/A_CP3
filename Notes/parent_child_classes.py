@@ -38,7 +38,7 @@ birdy = Dog(1,"Black","Nikkie","Lab","Birdy")
 alex = Animal(16,"white")
 nick = Animal(15,"White")
 print(bobby)
-print(alex) 
+print(alex)
 
 print(bobby)
 print(alex == nick)
