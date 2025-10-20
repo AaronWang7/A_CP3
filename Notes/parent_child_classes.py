@@ -56,11 +56,11 @@ print(bobby == birdy)
 """
 What is a parent/abstract class? The main Class that which have many child classes(if created)
 How do you create a child class? In the code
-How does a child class inherit from the parent class? It can access informations from the parent class
+How does a child class inherit from the parent class? In the code
 What are class diagrams? Charts that shows the relation ships
-How are class diagrams used to show a parent/child relationship? Because theyare connected to each other
+How are class diagrams used to show a parent/child relationship? Because theyare connected to each other, represented by a solid line with a hollow, closed arrowhead pointing from the child (subclass) to the parent (superclass)
 How do you overload operators in a class? In the code
 What are test cases? Check your code, to make sure it meets the conditions
-Why do we use test cases? Because it checks your code
+Why do we use test cases? Because it checks your code, make sure it's good.
 How do we create test cases? Make a new file, name it, and import functions to the file.
 """
