@@ -36,60 +36,57 @@
 
 # Code Start
 
-# Parent Class
-class Dessertitem():
-        name: str
-        def __init__(self,name = ""):
-            self.name = name  
-#Child class called Candy
-class Candy(Dessertitem):
-   price_per_pound: float
-   def __init__(self,price_per_pound = 0.0):
+class DessertItem:
+    """Parent class for all dessert items"""
+    
+    def __init__(self, name=""):
+        self.name = name
+
+class Candy(DessertItem):
+    """Candy class - inherits from DessertItem"""
+    
+    def __init__(self, name="", candy_weight=0.0, price_per_pound=0.0):
+        super().__init__(name)
+        self.candy_weight = candy_weight
         self.price_per_pound = price_per_pound
 
-# Child class called IceCream
-class IceCream(Dessertitem):
-    price_per_scoop: float
-    scoop: int
-    def __init__(self,price_per_scoop = 0.0,scoop = 0):
+class Cookie(DessertItem):
+    """Cookie class - inherits from DessertItem"""
+    
+    def __init__(self, name="", cookie_quantity=0, price_per_dozen=0.0):
+        super().__init__(name)
+        self.cookie_quantity = cookie_quantity
+        self.price_per_dozen = price_per_dozen
+
+class IceCream(DessertItem):
+    """IceCream class - inherits from DessertItem"""
+    
+    def __init__(self, name="", scoop_count=0, price_per_scoop=0.0):
+        super().__init__(name)
+        self.scoop_count = scoop_count
         self.price_per_scoop = price_per_scoop
-        self.scoop = scoop
 
-#Child class called Cookie
-class Cookie(Dessertitem):
-    price_per_dozen: float
-    amount_of_cookies: int
-    def __init__(self,price_per_dozen = 0.0,amount_of_cookies = 0):
-         self.price_per_dozen = price_per_dozen
-         self.amount_of_cookies = amount_of_cookies
-
-# Child class called Sundae(Child class of IceCream)
 class Sundae(IceCream):
-     price_per_scoop: float
-     scoop: int
-     topping_name: str
-     topping_price: float
-     def __init__(self,topping_name = "",topping_price = 0.0):
-         self.topping_name = topping_name
-         self.topping_price = topping_price
+    """Sundae class - inherits from IceCream"""
+    
+    def __init__(self, name="", scoop_count=0, price_per_scoop=0.0, topping_name="", topping_price=0.0):
+        super().__init__(name, scoop_count, price_per_scoop)
+        self.topping_name = topping_name
+        self.topping_price = topping_price
 
-#Class called Order(Not child calss)
-class Order():
-     order: list
-     vaule = []
-     def __init__(self,order,vaule):
-         self.order = order
-         self.vaule = vaule
-     def __len__():
-          
-
-
-
-
-
-
-
-
+class Order:
+    """Order class to keep track of dessert items"""
+    
+    def __init__(self):
+        self.order = []
+    
+    def add(self, item):
+        """Add a dessert item to the order"""
+        self.order.append(item)
+    
+    def __len__(self):
+        """Return the number of items in the order"""
+        return len(self.order)
 
 
 
