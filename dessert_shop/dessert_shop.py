@@ -13,10 +13,11 @@ Print out namne of each item
 How many items are in the order
 """
 
+# Import Candy, Cookie, IceCream, Sundae, Order from dessert
 from dessert import Candy, Cookie, IceCream, Sundae, Order
 
 def main():
-    # Create a new order instance
+    # Create a new order
     order = Order()
     
     # Add items to the order
