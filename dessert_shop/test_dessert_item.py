@@ -6,12 +6,14 @@ Test the DessertItem, Candy, Cookie, IceCream, and Sundae classes
         3. A vaules in a set created class can be updated.
     Total of 3 test files.
 """
+#Import pytest
+# Import DessertItem function from dessert
 import pytest
 from dessert import DessertItem
 
 class TestDessertItem:
     def test_default_values(self):
-        """Test DessertItem with default values"""
+        #Test DessertItem
         item = DessertItem()
         assert item.name == ""
     
