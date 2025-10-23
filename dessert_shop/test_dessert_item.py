@@ -11,19 +11,20 @@ Test the DessertItem, Candy, Cookie, IceCream, and Sundae classes
 import pytest
 from dessert import DessertItem
 
-class TestDessertItem:
-    def test_default_values(self):
-        #Test DessertItem
-        item = DessertItem()
-        assert item.name == ""
-    
-    def test_provided_values(self):
-        """Test DessertItem with provided values"""
-        item = DessertItem("Test Item")
-        assert item.name == "Test Item"
-    
-    def test_updated_values(self):
-        """Test DessertItem attribute updates"""
-        item = DessertItem("Original Name")
-        item.name = "Updated Name"
-        assert item.name == "Updated Name"
+# Testing
+
+# Default testing
+def test_dessert_item_default():
+    item = DessertItem()
+    assert item.name == ""
+
+# Item povid testing
+def test_dessert_item_provided():
+    item = DessertItem("Test Item")
+    assert item.name == "Test Item"
+
+# Item update testing
+def test_dessert_item_updated():
+    item = DessertItem("Original")
+    item.name = "Updated"
+    assert item.name == "Updated"
