@@ -1,5 +1,5 @@
 #Import pytest
-#Import Candy function from dessert
+#Import Candy from dessert
 import pytest
 from dessert import Candy
 
