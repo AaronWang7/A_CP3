@@ -1,7 +1,7 @@
 # Import Pytest
 import pytest
 
-# Import Cookie function from dessert
+# Import Cookie from dessert
 from dessert import Cookie
 
 #Testing
