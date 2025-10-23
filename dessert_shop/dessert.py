@@ -37,13 +37,13 @@
 # Code Start
 
 class DessertItem:
-    """Parent class for all dessert items"""
+    #Parent class for dessert items
     
     def __init__(self, name=""):
         self.name = name
 
 class Candy(DessertItem):
-    """Candy class - inherits from DessertItem"""
+    #Candy class child class of DessertItem
     
     def __init__(self, name="", candy_weight=0.0, price_per_pound=0.0):
         super().__init__(name)
@@ -51,15 +51,15 @@ class Candy(DessertItem):
         self.price_per_pound = price_per_pound
 
 class Cookie(DessertItem):
-    """Cookie class - inherits from DessertItem"""
+    #Cookie class child class of DessertItem
     
     def __init__(self, name="", cookie_quantity=0, price_per_dozen=0.0):
         super().__init__(name)
         self.cookie_quantity = cookie_quantity
         self.price_per_dozen = price_per_dozen
 
+    #IceCream class child class of DessertItem
 class IceCream(DessertItem):
-    """IceCream class - inherits from DessertItem"""
     
     def __init__(self, name="", scoop_count=0, price_per_scoop=0.0):
         super().__init__(name)
@@ -67,7 +67,8 @@ class IceCream(DessertItem):
         self.price_per_scoop = price_per_scoop
 
 class Sundae(IceCream):
-    """Sundae class - inherits from IceCream"""
+    #Sundae class child class of IceCream
+
     
     def __init__(self, name="", scoop_count=0, price_per_scoop=0.0, topping_name="", topping_price=0.0):
         super().__init__(name, scoop_count, price_per_scoop)
@@ -75,17 +76,17 @@ class Sundae(IceCream):
         self.topping_price = topping_price
 
 class Order:
-    """Order class to keep track of dessert items"""
+    #Order class to keep track of dessert items
     
     def __init__(self):
         self.order = []
     
     def add(self, item):
-        """Add a dessert item to the order"""
+        # Add a dessert item to the order
         self.order.append(item)
     
     def __len__(self):
-        """Return the number of items in the order"""
+        # Return the number of items in the order
         return len(self.order)
 
 
