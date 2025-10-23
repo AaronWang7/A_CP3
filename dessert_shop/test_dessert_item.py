@@ -7,7 +7,7 @@ Test the DessertItem, Candy, Cookie, IceCream, and Sundae classes
     Total of 3 test files.
 """
 #Import pytest
-# Import DessertItem function from dessert
+# Import DessertItem from dessert
 import pytest
 from dessert import DessertItem
 
