@@ -1,10 +1,13 @@
+# Import abstract base class
 from abc import ABC, abstractmethod
 
+# Class called ChessPiece
 class ChessPiece(ABC):
     def __init__(self, color, position):
         self.color = color
         self.position = position
     
+    # abstractmethod
     @abstractmethod
     def can_move_to(self, new_pos):
         pass
@@ -22,6 +25,7 @@ class ChessPiece(ABC):
     def set_position(self, new_pos):
         self.position = new_pos
 
+# Class called Pawn(Child calss of ChessPiece)
 class Pawn(ChessPiece):
     def can_move_to(self, new_pos):
         # Basic pawn movement logic
@@ -35,9 +39,11 @@ class Pawn(ChessPiece):
             # Black pawns move down the board (decreasing rank)
             return (new_file == current_file and new_rank == current_rank - 1)
     
+    # Gets symbol 
     def get_symbol(self):
         return "P" if self.color == "White" else "p"
 
+# Class called Rook(Child calss of ChessPiece)
 class Rook(ChessPiece):
     def can_move_to(self, new_pos):
         # Rook moves horizontally or vertically
@@ -48,6 +54,7 @@ class Rook(ChessPiece):
     def get_symbol(self):
         return "R" if self.color == "White" else "r"
 
+# Class called Knight(Child calss of ChessPiece)
 class Knight(ChessPiece):
     def can_move_to(self, new_pos):
         # Knight moves in L-shape
@@ -58,6 +65,7 @@ class Knight(ChessPiece):
     def get_symbol(self):
         return "N" if self.color == "White" else "n"
 
+# Class called Bishop(Child calss of ChessPiece)
 class Bishop(ChessPiece):
     def can_move_to(self, new_pos):
         # Bishop moves diagonally
@@ -68,6 +76,7 @@ class Bishop(ChessPiece):
     def get_symbol(self):
         return "B" if self.color == "White" else "b"
 
+# Class called Queen(Child calss of ChessPiece)
 class Queen(ChessPiece):
     def can_move_to(self, new_pos):
         # Queen moves like rook or bishop
@@ -80,6 +89,7 @@ class Queen(ChessPiece):
     def get_symbol(self):
         return "Q" if self.color == "White" else "q"
 
+# Class called King(Child calss of ChessPiece)
 class King(ChessPiece):
     def can_move_to(self, new_pos):
         # King moves one square in any direction
@@ -90,7 +100,9 @@ class King(ChessPiece):
     def get_symbol(self):
         return "K" if self.color == "White" else "k"
 
+# Class called ChessGame
 class ChessGame:
+    # Basic set up for white pieces and black pieces
     def __init__(self):
         self.white_pieces = []
         self.black_pieces = []

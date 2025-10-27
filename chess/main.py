@@ -1,7 +1,8 @@
 # Import classes from classes.py
-from chess_pieces import ChessGame
+from classes import ChessGame
 
 def main():
+    movement = input(":")
     # Create chess game
     game = ChessGame()
     
@@ -13,14 +14,13 @@ def main():
     black_bishop = game.get_piece_at("C8")
     white_rook = game.get_piece_at("A1")
     
+    # Prints out positions before any moves
     print(game.get_piece_info(white_knight))
     print(game.get_piece_info(black_pawn))
     print(game.get_piece_info(white_pawn))
     print(game.get_piece_info(black_bishop))
     print(game.get_piece_info(white_rook))
     
-    print("\n=== MOVING PIECES ===")
-    # Move 5 different pieces
     moves = [
         (white_knight, "C3"),  # White Knight B1 to C3
         (black_pawn, "D5"),    # Black Pawn D7 to D5  
@@ -29,18 +29,20 @@ def main():
         (white_rook, "A4")     # White Rook A1 to A4 (should fail)
     ]
     
+    # Moving check
     for piece, new_pos in moves:
         success = game.move_piece(piece, new_pos)
-        print(f"{piece.get_color()} {type(piece).__name__} from {piece.get_position()} to {new_pos}: {'SUCCESS' if success else 'FAILED'}")
+        f"{piece.get_color()} {type(piece).__name__} from {piece.get_position()} to {new_pos}: {'SUCCESS' if success else 'FAILED'}"
     
     print("\n***After moves***")
-    # Display final positions
+    # Display final positions, after moves
     print(game.get_piece_info(white_knight))
     print(game.get_piece_info(black_pawn))
     print(game.get_piece_info(white_pawn))
     print(game.get_piece_info(black_bishop))
     print("White Rook 1 cannot move to A4")
     
+    # Prints out how many pieces are left
     print(f"\nWhite pieces left: {game.get_pieces_left('White')}")
     print(f"Black pieces left: {game.get_pieces_left('Black')}")
 
