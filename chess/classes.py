@@ -1,128 +1,149 @@
-# Import abstract base class module
 from abc import ABC, abstractmethod
 
-# Class named ChessPiece as an abstract base class
 class ChessPiece(ABC):
-    color: str 
-    position: str
-
-    # Init method, setting color and position
-    def __init__(self,color,position):
-        # Set color and position attributes
+    def __init__(self, color, position):
         self.color = color
         self.position = position
-        position = "a8,a7,a6,a5,a4,a3,a2,a1,b8,b7,b6,b5,b4,b3,b2,b1,c8,c7,c6,c5,c4,c3,c2,c1,d8,d7,d6,d5,d4,d3,d2,d1,e8,e7,e6,e5,e4,e3,e2,e1,f8,f7,f6,f5,f4,f3,f2,f1,g8,g7,g6,g5,g4,g3,g2,g1,h8,h7,h6,h5,h4,h3,h2,h1"
-        
-    # Asbtract method so that the class is abstract  
+    
     @abstractmethod
-
-    # Define mutiple abstract methods
-    def getPosition():
-        pass
-    def move(newPos:str) -> bool:
+    def can_move_to(self, new_pos):
         pass
     
-    def getSymbol() -> str:
+    @abstractmethod
+    def get_symbol(self):
         pass
-# Classes for each chess piece inheriting from ChessPiece
+    
+    def get_color(self):
+        return self.color
+    
+    def get_position(self):
+        return self.position
+    
+    def set_position(self, new_pos):
+        self.position = new_pos
+
 class Pawn(ChessPiece):
-    def canMoveTo(newPos:str):
-        pass
-    
-    def getSymbol():
-        pass
-class Rook(ChessPiece):
-    def canMoveTo(newPos:str):
-        pass
-    def getSymbol():
-
-        pass
-class Knight(ChessPiece):
-    def canMoveTo(newPos:str):
-        pass
-    def getSymbol():
-        pass
-class Bishop(ChessPiece):
-    def canMoveTo(newPos:str):
-        pass
-    def getSymbol():
-        pass
-class Queen(ChessPiece):
-    def canMoveTo(newPos:str):
-        pass
-    def getSymbol():
-        pass
-class King(ChessPiece):
-    def canMoveTo(newPos:str):
-        pass
-    def getSymbol():
-        pass
-
-# Class called ChessGame
-class ChessGame:
-    whitePices: list
-    blackPieces: list
-
-    def __init__(self,whitePieces,blackPieces):
-        self.whitePieces = whitePieces
-        self.blackPieces = blackPieces
-
-        # Set up each player's pieces
-        whitePieces = {"a7":"Pawn","b7":"Pawn","c7":"Pawn","d7":"Pawn","e7":"Pawn","f7":"Pawn","g7":"Pawn","h7":"Pawn",
-                       "a8":"Rook","h8":"Rook","b8":"Knight","g8":"Knight","c8":"Bishop","f8":"Bishop","d8":"Queen","e8":"King"}
-        blackPieces = {"a2":"Pawn","b2":"Pawn","c2":"Pawn","d2":"Pawn","e2":"Pawn","f2":"Pawn","g2":"Pawn","h2":"Pawn",
-                       "a1":"Rook","h1":"Rook","b1":"Knight","g1":"Knight","c1":"Bishop","f1":"Bishop","d1":"Queen","e1":"King"}
+    def can_move_to(self, new_pos):
+        # Basic pawn movement logic
+        current_file, current_rank = self.position[0], int(self.position[1])
+        new_file, new_rank = new_pos[0], int(new_pos[1])
         
+        if self.color == "White":
+            # White pawns move up the board (increasing rank)
+            return (new_file == current_file and new_rank == current_rank + 1)
+        else:
+            # Black pawns move down the board (decreasing rank)
+            return (new_file == current_file and new_rank == current_rank - 1)
+    
+    def get_symbol(self):
+        return "P" if self.color == "White" else "p"
 
+class Rook(ChessPiece):
+    def can_move_to(self, new_pos):
+        # Rook moves horizontally or vertically
+        current_file, current_rank = self.position[0], self.position[1]
+        new_file, new_rank = new_pos[0], new_pos[1]
+        return (current_file == new_file or current_rank == new_rank)
+    
+    def get_symbol(self):
+        return "R" if self.color == "White" else "r"
 
+class Knight(ChessPiece):
+    def can_move_to(self, new_pos):
+        # Knight moves in L-shape
+        file_diff = abs(ord(self.position[0]) - ord(new_pos[0]))
+        rank_diff = abs(int(self.position[1]) - int(new_pos[1]))
+        return (file_diff == 1 and rank_diff == 2) or (file_diff == 2 and rank_diff == 1)
+    
+    def get_symbol(self):
+        return "N" if self.color == "White" else "n"
 
+class Bishop(ChessPiece):
+    def can_move_to(self, new_pos):
+        # Bishop moves diagonally
+        file_diff = abs(ord(self.position[0]) - ord(new_pos[0]))
+        rank_diff = abs(int(self.position[1]) - int(new_pos[1]))
+        return file_diff == rank_diff
+    
+    def get_symbol(self):
+        return "B" if self.color == "White" else "b"
 
+class Queen(ChessPiece):
+    def can_move_to(self, new_pos):
+        # Queen moves like rook or bishop
+        file_diff = abs(ord(self.position[0]) - ord(new_pos[0]))
+        rank_diff = abs(int(self.position[1]) - int(new_pos[1]))
+        return (self.position[0] == new_pos[0] or 
+                self.position[1] == new_pos[1] or 
+                file_diff == rank_diff)
+    
+    def get_symbol(self):
+        return "Q" if self.color == "White" else "q"
 
-    def movePiece(self, piece: ChessPiece, newPos: str) -> bool:
-        pass
-    def removePiece(self, piece: ChessPiece):
-        pass
-    def getPiecesLeft(self, color: str) -> list:
-        pass
-    def getPiecesAt(position:str) -> ChessPiece:
-        pass
+class King(ChessPiece):
+    def can_move_to(self, new_pos):
+        # King moves one square in any direction
+        file_diff = abs(ord(self.position[0]) - ord(new_pos[0]))
+        rank_diff = abs(int(self.position[1]) - int(new_pos[1]))
+        return file_diff <= 1 and rank_diff <= 1
+    
+    def get_symbol(self):
+        return "K" if self.color == "White" else "k"
 
-# Not finshed yet
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-"""
-Follow the provided class diagram exactly 
-Implement ChessPiece as an abstract class 
-Create all six concrete piece classes (Pawn, Rook, Knight, Bishop, Queen, King) 
-Implement canMoveTo(), getSymbol(), setPosition(), and getColor() methods 
-Create ChessGame class with whitePieces and blackPieces lists 
-Implement movePiece(), removePiece(), getPiecesLeft(), and getPieceAt() in ChessGame 
-Create correct number of pieces for each player 
-Set up pieces in starting positions 
-Demonstrate moving 5 different pieces 
-Implement basic move validation for each piece type 
-Use removePiece() method for capturing 
-Put each class in its own file 
-Add comments to explain your code 
-Test each piece type for correct movement 
-Focus on core functionality over advanced game logic
-"""
+class ChessGame:
+    def __init__(self):
+        self.white_pieces = []
+        self.black_pieces = []
+        self.setup_pieces()
+    
+    def setup_pieces(self):
+        # Create white pieces
+        self.white_pieces.extend([
+            Rook("White", "A1"), Knight("White", "B1"), Bishop("White", "C1"), 
+            Queen("White", "D1"), King("White", "E1"), Bishop("White", "F1"), 
+            Knight("White", "G1"), Rook("White", "H1")
+        ])
+        for file in "ABCDEFGH":
+            self.white_pieces.append(Pawn("White", f"{file}2"))
+        
+        # Create black pieces  
+        self.black_pieces.extend([
+            Rook("Black", "A8"), Knight("Black", "B8"), Bishop("Black", "C8"),
+            Queen("Black", "D8"), King("Black", "E8"), Bishop("Black", "F8"),
+            Knight("Black", "G8"), Rook("Black", "H8")
+        ])
+        for file in "ABCDEFGH":
+            self.black_pieces.append(Pawn("Black", f"{file}7"))
+    
+    def move_piece(self, piece, new_pos):
+        if piece.can_move_to(new_pos):
+            old_pos = piece.get_position()
+            piece.set_position(new_pos)
+            return True
+        return False
+    
+    def remove_piece(self, piece):
+        if piece in self.white_pieces:
+            self.white_pieces.remove(piece)
+        elif piece in self.black_pieces:
+            self.black_pieces.remove(piece)
+    
+    def get_pieces_left(self, color):
+        return len(self.white_pieces) if color == "White" else len(self.black_pieces)
+    
+    def get_piece_at(self, position):
+        for piece in self.white_pieces + self.black_pieces:
+            if piece.get_position() == position:
+                return piece
+        return None
+    
+    def get_piece_info(self, piece):
+        if not piece:
+            return "No piece"
+        
+        # Count pieces of same type for numbering
+        pieces_list = self.white_pieces if piece.get_color() == "White" else self.black_pieces
+        same_type = [p for p in pieces_list if type(p).__name__ == type(piece).__name__]
+        count = same_type.index(piece) + 1
+        
+        return f"{piece.get_color()} {type(piece).__name__} {count}, Symbol {piece.get_symbol()} is at {piece.get_position()}"
