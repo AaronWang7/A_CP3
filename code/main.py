@@ -17,22 +17,23 @@ while health > 0:
     if getaction == "1":
         print("Welcome to our shop! What do you want to buy?")
         shop = input("1 = Wood sword 5 coin, 2 = Wood armor 5 coin, 3 = Wood shoe 3 coin, 4 = Stone sword 10 coin, 5 = Stone armor 10 coin, 6 = Stone shoe 7 coin, 7 = Iron sword 20 coin, 8 = Iron armor 20 coin, 9 = Iron shoe 15 coin， 0 = advanced shop")
-        if shop == "0" :
-            shop2 = input("This is the better shop, 1 = dimond armor 100 coin, 2 = dimond sword 100 coin, 3 = dimond shoe 50 coin, 4 = small heal bottle 1coin. 5 = large heal bottle 50coin:")
-            if shop2 == "1" and  coin >= 100:
-                    inventory.append("dimond armor")
-                    coin = coin - 100
+        if shop == "0":
+            shop2 = input(
+                "This is the better shop, 1 = dimond armor 100 coin, 2 = dimond sword 100 coin, 3 = dimond shoe 50 coin, 4 = small heal bottle 1coin. 5 = large heal bottle 50coin:")
+            if shop2 == "1" and coin >= 100:
+                inventory.append("dimond armor")
+                coin = coin - 100
             elif shop2 == "2" and coin >= 100:
-                    inventory.append("dimond sword")
-                    coin = coin - 100
+                inventory.append("dimond sword")
+                coin = coin - 100
             elif shop2 == "3" and coin >= 50:
-                    inventory.append("dimond shoe")
+                inventory.append("dimond shoe")
             elif shop2 == "4" and coin >= 1:
-                    inventory.append("small heal bottle")
-                    coin = coin - 1
+                inventory.append("small heal bottle")
+                coin = coin - 1
             elif shop == "5" and coin >= 50:
-                    inventory.append("large heal bottle")
-                    coin = coin - 50
+                inventory.append("large heal bottle")
+                coin = coin - 50
         elif shop == "1" and coin >= 5:
             coin = coin - 5
             inventory.append("Wood sword")
@@ -154,7 +155,6 @@ while health > 0:
                 else:
                     print("You failed to dodge!")
 
-
             if enemy_health > 0:
                 health -= enemy_damage
                 print(f"Enemy attacks! Your health: {health}")
@@ -164,7 +164,7 @@ while health > 0:
     elif getaction == "4":
         print(f"Health = {health}, Damage = {damage}, Speed = {
               speed}, Coin = {coin}, Inventory = {inventory}")
-        print("This is your equipped item:",equipped_item)
+        print("This is your equipped item:", equipped_item)
 
     elif getaction == "5":
         ch = input(f"What do you want to equip? You now have {inventory}: ")
@@ -215,5 +215,5 @@ while health > 0:
             health = health + 10
         elif ch == "large heal bottle":
             inventory.remove("Large heal bottle")
-            health = health + 25 
+            health = health + 25
         print(f"Your new stats - Damage: {damage}, Speed: {speed}")
