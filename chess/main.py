@@ -1,6 +1,22 @@
+"""
+Follow the provided class diagram exactly 
+Implement ChessPiece as an abstract class 
+Create all six concrete piece classes (Pawn, Rook, Knight, Bishop, Queen, King) 
+Implement canMoveTo(), getSymbol() methods 
+Create ChessGame class with whitePieces and blackPieces lists 
+Implement movePiece(), removePiece(), getPiecesLeft(), and getPieceAt() in ChessGame 
+Create correct number of pieces for each player 
+Set up pieces in starting positions 
+Demonstrate moving 5 different pieces 
+Implement basic move validation for each piece type 
+Use removePiece() method for capturing 
+Put all classes on 1 file separate from your running file 
+Add comments to explain your code 
+Test each piece type for correct movement 
+Focus on core functionality over advanced game logic
+"""
 # Import class(ChessGame)
 from classes import ChessGame
-
 def demonstrate_chess_moves():
 
     # Initialize game and get pieces
@@ -13,8 +29,8 @@ def demonstrate_chess_moves():
         'white_rook': game.get_piece_at("A1")
     }
     
-    # Display initial positions
-    print("--- INITIAL POSITIONS ---")
+    # Display positions
+    print("--- POSITIONS ---")
     for piece in pieces.values():
         print(game.get_piece_info(piece))
     
@@ -40,6 +56,6 @@ def demonstrate_chess_moves():
     # Display piece counts
     print(f"\nWhite pieces left: {game.get_pieces_left('White')}")
     print(f"Black pieces left: {game.get_pieces_left('Black')}")
-
+#
 if __name__ == "__main__":
     demonstrate_chess_moves()
