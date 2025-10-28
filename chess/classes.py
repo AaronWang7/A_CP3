@@ -1,3 +1,21 @@
+"""
+Follow the provided class diagram exactly - 
+Implement ChessPiece as an abstract class 
+Create all six concrete piece classes (Pawn, Rook, Knight, Bishop, Queen, King) -
+Implement canMoveTo(), getSymbol() methods -
+Create ChessGame class with whitePieces and blackPieces lists -
+Implement movePiece(), removePiece(), getPiecesLeft(), and getPieceAt() in ChessGame -
+Create correct number of pieces for each player -
+Set up pieces in starting positions -
+Demonstrate moving 5 different pieces -
+Implement basic move validation for each piece type -
+Use removePiece() method for capturing -
+Put all classes on 1 file separate from your running file -
+Add comments to explain your code -
+Test each piece type for correct movement -
+Focus on core functionality over advanced game logic-
+"""
+
 # Chess game implementation with abstract base class
 from abc import ABC, abstractmethod
 
@@ -56,7 +74,7 @@ class Knight(ChessPiece):
     
     def get_symbol(self):
         return "N" if self.color == "White" else "n"
-
+#
 class Bishop(ChessPiece):
     #Bishop chess piece - moves diagonally
     def can_move_to(self, new_pos):
@@ -132,7 +150,6 @@ class ChessGame:
         #Get count of remaining pieces for a color
         pieces = self.white_pieces if color == "White" else self.black_pieces
         return len(pieces)
-    
     def get_piece_at(self, position):
         #Get piece at a specific position
         for piece in self.white_pieces + self.black_pieces:
