@@ -57,6 +57,6 @@ for i in str(buy):
 money = money - buy
 print("\nNew")
 
-data = [["Bruce Wayne", "Batman", money], ["Oliver queen", "Green arrow", 90], ["Someone", "some job", 1000]
+data = [["Bruce Wayne", "Batman", money], ["Oliver queen", "Green arrow", money], ["Someone", "some job", money]
         ]
 print(tabulate.tabulate(data, headers=["Name", "job", "Total money"]))
