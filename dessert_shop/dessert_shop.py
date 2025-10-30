@@ -32,14 +32,15 @@ class DessertShop:
                     break
                 print("Weight must be positive")
             except:
-                print("Please enter a valid number")
+                print("Enter a valid number")
         
         while True:
             try:
                 price = float(input("Enter price per pound: "))
                 if price > 0:
                     break
-                print("Price must be positive")
+                else:
+                    print("Price must be positive")
             except:
                 print("Please enter a valid number")
         
@@ -160,21 +161,21 @@ def main():
         elif choice == '1':
             item = shop.user_prompt_candy()
             order.add(item)
-            print(f'{item.name} has been added to your order.')
+            print(f"{item.name} has been added to your order.")
         elif choice == '2':
             item = shop.user_prompt_cookie()
             order.add(item)
-            print(f'{item.name} has been added to your order.')
+            print(f"{item.name} has been added to your order.")
         elif choice == '3':
             item = shop.user_prompt_icecream()
             order.add(item)
-            print(f'{item.name} has been added to your order.')
+            print(f"{item.name} has been added to your order.")
         elif choice == '4':
             item = shop.user_prompt_sundae()
             order.add(item)
-            print(f'{item.name} has been added to your order.')
+            print(f"{item.name} has been added to your order.")
         else:
-            print('Invalid response: Please enter a choice from the menu (1-4) or Enter')
+            print("Please enter a choice from the menu (1-4) or Enter")
         print()
 
     # Print receipt using tabulate
@@ -190,7 +191,6 @@ def main():
     total_cost = subtotal + total_tax
     
     receipt_data.append(["Subtotal", f"${subtotal:.2f}", ""])
-    receipt_data.append(["Tax", f"${total_tax:.2f}", ""])
     receipt_data.append(["Total", f"${total_cost:.2f}", ""])
     receipt_data.append(["Total Items", str(len(order)), ""])
     

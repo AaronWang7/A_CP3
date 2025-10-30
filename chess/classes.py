@@ -1,60 +1,56 @@
-"""
-Follow the provided class diagram exactly - 
-Implement ChessPiece as an abstract class 
-Create all six concrete piece classes (Pawn, Rook, Knight, Bishop, Queen, King) -
-Implement canMoveTo(), getSymbol() methods -
-Create ChessGame class with whitePieces and blackPieces lists -
-Implement movePiece(), removePiece(), getPiecesLeft(), and getPieceAt() in ChessGame -
-Create correct number of pieces for each player -
-Set up pieces in starting positions -
-Demonstrate moving 5 different pieces -
-Implement basic move validation for each piece type -
-Use removePiece() method for capturing -
-Put all classes on 1 file separate from your running file -
-Add comments to explain your code -
-Test each piece type for correct movement -
-Focus on core functionality over advanced game logic-
-"""
-
-# Chess game implementation with abstract base class
+# Import abc for abstract base class
 from abc import ABC, abstractmethod
 
+# Parent class for all chess pieces
 class ChessPiece(ABC):
-    #Abstract base class for chess pieces
+    # Constructor
     def __init__(self, color, position):
-        #Initialize chess piece with color and position
+        # Set the color (Black or White)
         self.color = color
+        # Set starting position
         self.position = position
     
+    # This function will check if a move is legal
     @abstractmethod
     def can_move_to(self, new_pos):
-        #Abstract method to check if piece can move to new position
         pass
     
+    # This function will return the piece symbol
     @abstractmethod
     def get_symbol(self):
-        #Abstract method to get piece's symbol
         pass
     
+    # Get the current position
     def get_position(self):
-        #Get current position of piece
         return self.position
     
+    # Change the position
     def set_position(self, new_pos):
-        #Set new position for piece
         self.position = new_pos
 
+# Pawn piece
 class Pawn(ChessPiece):
-    #Pawn chess piece 
     def can_move_to(self, new_pos):
+        # Get current and new ranks
         current_rank = int(self.position[1])
         new_rank = int(new_pos[1])
-        direction = 1 if self.color == "White" else -1
-        return (new_pos[0] == self.position[0] and 
-                new_rank == current_rank + direction)
+        
+        # Check if pawn moves forward
+        if self.color == "White":
+            # White pawns move up
+            can_move = new_pos[0] == self.position[0] and new_rank == current_rank + 1
+        else:
+            # Black pawns move down
+            can_move = new_pos[0] == self.position[0] and new_rank == current_rank - 1
+            
+        return can_move
     
+    # Return P for white pawns, p for black pawns
     def get_symbol(self):
-        return "P" if self.color == "White" else "p"
+        if self.color == "White":
+            return "P"
+        else:
+            return "p"
 
 class Rook(ChessPiece):
     #Rook chess piece
@@ -74,7 +70,7 @@ class Knight(ChessPiece):
     
     def get_symbol(self):
         return "N" if self.color == "White" else "n"
-#
+
 class Bishop(ChessPiece):
     #Bishop chess piece - moves diagonally
     def can_move_to(self, new_pos):
@@ -107,31 +103,56 @@ class King(ChessPiece):
     def get_symbol(self):
         return "K" if self.color == "White" else "k"
 
+# Main game class
 class ChessGame:
-    #Main chess game class managing pieces and moves
     def __init__(self):
-        #Initialize game with empty piece lists 
+        # Lists to store pieces
         self.white_pieces = []
         self.black_pieces = []
+        # Setup the board
         self.setup_pieces()
     
+    # Put all pieces in starting positions
     def setup_pieces(self):
-        #Set up initial chess piece positions
-        # Setup back row pieces
-        back_row = [Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook]
-        files = "ABCDEFGH"
-        
         # Create white pieces
-        for i, piece_class in enumerate(back_row):
-            self.white_pieces.append(piece_class("White", f"{files[i]}1"))
-        for file in files:
-            self.white_pieces.append(Pawn("White", f"{file}2"))
+        self.white_pieces.append(Rook("White", "A1"))
+        self.white_pieces.append(Knight("White", "B1"))
+        self.white_pieces.append(Bishop("White", "C1"))
+        self.white_pieces.append(Queen("White", "D1"))
+        self.white_pieces.append(King("White", "E1"))
+        self.white_pieces.append(Bishop("White", "F1"))
+        self.white_pieces.append(Knight("White", "G1"))
+        self.white_pieces.append(Rook("White", "H1"))
+        
+        # Create white pawns
+        self.white_pieces.append(Pawn("White", "A2"))
+        self.white_pieces.append(Pawn("White", "B2"))
+        self.white_pieces.append(Pawn("White", "C2"))
+        self.white_pieces.append(Pawn("White", "D2"))
+        self.white_pieces.append(Pawn("White", "E2"))
+        self.white_pieces.append(Pawn("White", "F2"))
+        self.white_pieces.append(Pawn("White", "G2"))
+        self.white_pieces.append(Pawn("White", "H2"))
         
         # Create black pieces
-        for i, piece_class in enumerate(back_row):
-            self.black_pieces.append(piece_class("Black", f"{files[i]}8"))
-        for file in files:
-            self.black_pieces.append(Pawn("Black", f"{file}7"))
+        self.black_pieces.append(Rook("Black", "A8"))
+        self.black_pieces.append(Knight("Black", "B8"))
+        self.black_pieces.append(Bishop("Black", "C8"))
+        self.black_pieces.append(Queen("Black", "D8"))
+        self.black_pieces.append(King("Black", "E8"))
+        self.black_pieces.append(Bishop("Black", "F8"))
+        self.black_pieces.append(Knight("Black", "G8"))
+        self.black_pieces.append(Rook("Black", "H8"))
+        
+        # Create black pawns
+        self.black_pieces.append(Pawn("Black", "A7"))
+        self.black_pieces.append(Pawn("Black", "B7"))
+        self.black_pieces.append(Pawn("Black", "C7"))
+        self.black_pieces.append(Pawn("Black", "D7"))
+        self.black_pieces.append(Pawn("Black", "E7"))
+        self.black_pieces.append(Pawn("Black", "F7"))
+        self.black_pieces.append(Pawn("Black", "G7"))
+        self.black_pieces.append(Pawn("Black", "H7"))
     
     def move_piece(self, piece, new_pos):
         #Move a piece to a new position if the move is valid
@@ -150,6 +171,7 @@ class ChessGame:
         #Get count of remaining pieces for a color
         pieces = self.white_pieces if color == "White" else self.black_pieces
         return len(pieces)
+    
     def get_piece_at(self, position):
         #Get piece at a specific position
         for piece in self.white_pieces + self.black_pieces:
